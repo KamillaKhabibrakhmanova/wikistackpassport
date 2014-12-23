@@ -14,4 +14,15 @@ router.get('/logout', function(req, res){
   res.redirect('/'); 
 })
 
+//FACEBOOK ROUTES
+//facebook authentication and login 
+router.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
+
+// handle the callback after facebook has authenticated the user
+router.get('/auth/facebook/callback',
+  passport.authenticate('facebook', {
+    successRedirect : '/home',
+    failureRedirect : '/'
+  }));
+
 module.exports = router;

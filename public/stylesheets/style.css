@@ -30,3 +30,11 @@ a {
   font: normal 14px arial,sans-serif;
 }
 
+.profile-header {
+  text-align: right;
+}
+
+.logout {
+  float: right;
+}
+

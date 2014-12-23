@@ -3,7 +3,19 @@ var router = express.Router();
 var models = require('../models/');
 
 /* GET users listing. */
-router.get('/', function(req, res) {
+
+function isLoggedIn(req, res, next){ 
+  // Note that this is a function declaration, NOT an expression. 
+  // It loads before any code is called--compare this with a function expression.
+  // Why did we write this as a declaration? 
+  // Read more: http://stackoverflow.com/q/1013385/66355
+  if (req.isAuthenticated()){
+    return next();
+  }
+  res.redirect('/') //if not authenticated, redirect to main page
+}
+
+router.get('/', isLoggedIn, function(req, res) {
   res.render('add');
 });
  
